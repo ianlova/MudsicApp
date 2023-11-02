@@ -3,9 +3,13 @@ import Constants from 'expo-constants'
 import Item from './Item'
 import { StyleSheet, Text, View, Alert, TouchableNativeFeedback, FlatList, TouchableNativeFeedbackBase } from 'react-native'
 
-const placeholderData = [1, 2, 3, 4, 5, 6, 7, 8];
 
-const Row = ({tituloSeccion}) =>{
+const Row = ({ tituloSeccion, navigation, data }) => {
+// const placeholderData = [1, 2, 3, 4, 5, 6, 7, 8];
+let placeholderData = data && data.data && data.data.tracks;
+    console.log(tituloSeccion); // Debería imprimir: 'Canciones'
+    console.log(placeholderData); 
+    // Ahora también puedes usar navigation.navigate, navigation.push, etc.
     return(
         <View overScrollMode='never'>
             <Text
@@ -20,14 +24,15 @@ const Row = ({tituloSeccion}) =>{
             }}
             >{tituloSeccion}</Text>
             <FlatList overScrollMode='never'
+                // data={data && data.data.tracks}
                 data={placeholderData}
                 horizontal={true}
                 renderItem={({ item }) => (
                     <View>
-                        <Item key={item} img="../imgs/800px-Clics-modernos-charly-garcia-front.jpg" nombreItem="Clics Modernos" descItem="Charly Garcia" />
-                        <Item key={item} img="../imgs/cancionanimal.jpg" nombreItem="Cancion Animal" descItem="Soda Stereo" />
+                        <Item key={item} img={item.album.images[0].url} nombreItem={item.name} descItem={item.artists[0].name} />
+                        {/* <Item key={item} img="../imgs/cancionanimal.jpg" nombreItem="Cancion Animal" descItem="Soda Stereo" />
                         <Item key={item} img="../imgs/artaud.jpg" nombreItem="Artaud" descItem="Pescado Rabioso" />
-                        <Item key={item} img="../imgs/elamordespuesdelamor.jpg" nombreItem="El amor después del amor" descItem="Fito Paez" />                        
+                        <Item key={item} img="../imgs/elamordespuesdelamor.jpg" nombreItem="El amor después del amor" descItem="Fito Paez" />                         */}
                     </View>
                 )}
             />    

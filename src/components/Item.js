@@ -9,7 +9,7 @@ const Item = ({img, nombreItem, descItem}) => {
             margin: 5
         }}>
             { <Image
-                source={{img: img}} 
+                source={{uri: img}} 
                 style={{
                     width: 120,
                     height: 120
